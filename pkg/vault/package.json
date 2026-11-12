@@ -27,6 +27,8 @@
     "test": "yarn test:hardhat && yarn test:forge",
     "test:hardhat": "hardhat test",
     "test:forge": "yarn build && REUSING_HARDHAT_ARTIFACTS=true forge test --ffi -vvv",
+    "deploy:bsc": "FOUNDRY_PROFILE=deploy forge script script/DeployBalancer.s.sol:DeployBalancer --rpc-url bsc --broadcast --slow",
+    "deploy:bsc-testnet": "FOUNDRY_PROFILE=deploy forge script script/DeployBalancer.s.sol:DeployBalancer --rpc-url bscTestnet --broadcast --slow",
     "test:stress": "FOUNDRY_PROFILE=intense forge test -vvv",
     "test:medusa": "medusa fuzz --config medusa.json",
     "coverage": "./coverage.sh forge",

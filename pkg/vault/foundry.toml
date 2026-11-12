@@ -13,6 +13,7 @@ fs_permissions = [
 remappings = [
     'vault/=../vault/',
     'pool-weighted/=../pool-weighted/',
+    'pool-stable/=../pool-stable/',
     'solidity-utils/=../solidity-utils/',
     'ds-test/=../../node_modules/forge-std/lib/ds-test/src/',
     'forge-std/=../../node_modules/forge-std/src/',
@@ -46,6 +47,17 @@ verbosity = 3
 runs = 100000
 max_test_rejects = 600000
 
+[profile.deploy]
+solc_version = "0.8.27"
+evm_version = "cancun"
+via_ir = true
+optimizer = true
+# Runs this low are required to keep Vault under the 24,576-byte EIP-170 limit
+# without the Hardhat Yul sequence, which crashes solc on a full Foundry build.
+optimizer_runs = 1
+
 [rpc_endpoints]
   mainnet = "${MAINNET_RPC_URL}"
   sepolia = "${SEPOLIA_RPC_URL}"
+  bsc = "${BSC_MAINNET_RPC_URL}"
+  bscTestnet = "${BSC_TESTNET_RPC_URL}"
